@@ -1,0 +1,46 @@
+html, body, #app {
+    // height: 100%;
+    margin: 0;
+    padding: 0;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.el-card {
+    box-shadow: 0 1px 1px rgba(0, 0, blue, 0.15) !important;
+}
+
+.el-pagination {
+    margin-top: 15px;
+}
+
+
+@white: #fff;
+@blue:#5997FD;
+@light_blue: #7caeff;
+@dark_blue: #3d86fa;
+.el-button {
+  color: @white !important;
+  background-color: @blue !important;
+  border-color: @blue !important;
+ 
+  font-size: 17px;
+  &:hover,
+  &:focus {
+      color: @white !important;
+      border-color: @light_blue !important;
+      background-color: @light_blue !important;
+  }
+
+  &:active {
+      color: @white !important;
+      background-color: @dark_blue !important;
+      border-color: @blue !important;
+  }
+}
+
+.el-loading-mask {
+  // background-color: rgba(0, 0, 0, 0.7);
+}
