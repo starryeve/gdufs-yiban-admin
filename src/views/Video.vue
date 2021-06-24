@@ -110,7 +110,7 @@ export default {
         try {
           const { data: { status, data } } = await this.$http({
             method: 'delete',
-            url: 'http://118.126.100.116:8002/deleteVideo/' + id,
+            url: '/deleteVideo/' + id,
 
           })
           if (status === 1) {

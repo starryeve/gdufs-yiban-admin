@@ -79,11 +79,10 @@ export default {
 </script>
 
 <style lang="less">
-  .w-e-toolbar {
-    z-index: 100 !important;
-    background-color: darksalmon;
-  }
   .w-e-text-container {
-    z-index: 100 !important;
+    z-index: 1000 !important;
+  }
+  .w-e-toolbar {
+    z-index: 1001 !important;
   }
 </style>

@@ -79,7 +79,7 @@ export default {
           this.$message.success("登录成功");
         } catch (err) {
           console.log(err);
-          return this.$message.error('网站错误')
+          return this.$message.error('网络错误')
         }
 
 

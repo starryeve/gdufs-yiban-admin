@@ -174,8 +174,11 @@ export default {
               data: formData
             })
             if (status === 1) {
-              this.$router.go(0)
-              return this.$message.success('修改成功')
+
+              this.$message.success('修改成功')
+              setTimeout(() => {
+                this.$router.go(0)
+              }, 2000);
 
             } else {
               return this.$error.success('修改成功')

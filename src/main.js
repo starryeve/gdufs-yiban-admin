@@ -7,7 +7,7 @@ import './assets/css/global.less'
 
 import axios from 'axios'
 // 配置根路径
-axios.defaults.baseURL = 'http://118.126.100.116:8002/'
+axios.defaults.baseURL = 'https://www.gdufsybgzs.com:8002'
 axios.interceptors.request.use(config => {
   startLoading()
   const token = window.sessionStorage.getItem('token')

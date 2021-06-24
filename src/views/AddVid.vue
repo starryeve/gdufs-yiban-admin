@@ -67,7 +67,8 @@
         </div>
       </el-form-item>
     </el-form>
-  </div>
+    <my-progress v-show="isUpload"
+                 :percent="percent"></my-progress>
   </div>
 </template>
 
@@ -76,11 +77,13 @@
 import TcVod from 'vod-js-sdk-v6'
 import WangEditor from '../components/WangEditor.vue'
 import MyUpload from '../components/MyUpload.vue';
+import MyProgress from '../components/MyProgress.vue'
 import { requiredValidator } from '../utils/validate';
 export default {
   components: {
     WangEditor,
-    MyUpload
+    MyUpload,
+    MyProgress
   },
   data () {
     return {
@@ -96,7 +99,9 @@ export default {
       uploader: null,
       video: [],
       poster: [],
-      signature: ''
+      signature: '',
+      percent: 0,
+      isUpload: false
     }
 
   },
@@ -109,7 +114,7 @@ export default {
           url: '/getSign'
         })
         console.log(sign);
-        this.$loading.startLoading()
+
         return sign
       } catch (err) {
         console.log(err);
@@ -139,7 +144,7 @@ export default {
 
     async uploadVideo () {
 
-      this.$loading.startLoading()
+      this.isUpload = true
       return new Promise((resolve, reject) => {
         const tcVod = new TcVod({
           getSignature: this.getSignature
@@ -149,9 +154,9 @@ export default {
         })
 
         this.upload.on('media_progress', (info) => {
-
+          console.log(info.percent);
           const percent = parseFloat(info.percent).toFixed(2) * 100;
-          console.log(percent);
+          this.percent = percent
         })
 
         this.upload.done().then((res) => {
@@ -159,10 +164,11 @@ export default {
 
 
           this.form.fileId = fileId
-          this.$loading.endLoading()
+          this.isUpload = false
           resolve(res)
         }).catch((err) => {
-          this.$loading.endLoading()
+          this.percent = 0
+          this.isUpload = false
           reject(err)
 
         })
@@ -184,7 +190,7 @@ export default {
         try {
           const res1 = await this.uploadVideo()
           console.log(res1);
-          this.$loading.endLoading()
+
           const formData = new FormData()
           formData.append('title', this.form.title)
           formData.append('cover', this.form.poster)
